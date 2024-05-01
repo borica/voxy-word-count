@@ -3,20 +3,24 @@ export const spaceTokenizer = (words: string) => {
   const wordList = []
 
   for (let i = 0; i < words.length; i++) {
+    const isSpace = words[i] === ' '
+    const isTrailing = isSpace && tokens.at(-1)?.at(-1) === ' '
+    const isLastSpace = tokens.at(-1)?.at(-1) === ' '
+
     if (i === 0 && tokens.length === 0) {
-      if (words[i] === ' ') continue
+      if (isSpace) continue
 
       tokens.push(words[i])
       wordList.push(words[i])
       continue
     }
 
-    if (words[i] === ' ' && tokens.at(-1)?.at(-1) !== ' ') {
+    if (isSpace && !isTrailing) {
       tokens.push(' ')
       continue
     }
 
-    if (words[i] !== ' ' && tokens.at(-1)?.at(-1) === ' ') {
+    if (!isSpace && isLastSpace) {
       tokens.push(words[i])
       wordList.push(words[i])
       continue
