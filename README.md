@@ -7,9 +7,10 @@ Technologies used:
 - Vue 3
 - Typescript
 - Vitest
+- Netlify (hosting)
 
 ### Preview
-To avoid the work booting up the project, it can be previewed at this address:
+To avoid the extra work of booting up the project, it can be previewed at this address:
 
 [Voxy Word Count](https://voxy-word-count.netlify.app/)
 
