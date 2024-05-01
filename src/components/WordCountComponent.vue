@@ -15,15 +15,19 @@
     <div v-if="showTokens">
       <div class="token-count-container">
         <div>
+          <div>Words</div>
+          <span>{{ wordCount }}</span>
+        </div>
+        <div class="token-count-spacer">
           <div>Tokens</div>
           <span>{{ tokenCount }}</span>
         </div>
-        <div style="margin-left: 20px">
+        <div class="token-count-spacer">
           <div>Characters</div>
           <span>{{ charCount }}</span>
         </div>
       </div>
-      <div style="margin-top: 20px">
+      <div>
         Tokens:
         <div class="token-container element-scroll">
           <template v-for="(token, index) in tokens" :key="index">
@@ -62,9 +66,10 @@ const showNoDataModal = () => {
 const wordInput = ref<string>()
 
 const showTokens = ref<boolean>(false)
-const tokens = ref<string[]>([])
+const wordCount = ref<string[]>(0)
 const tokenCount = ref<number>(0)
 const charCount = ref<number>(0)
+const tokens = ref<string[]>([])
 
 const onSubmit = () => {
   if (!wordInput.value) {
@@ -76,6 +81,7 @@ const onSubmit = () => {
   tokens.value = resultTokens.tokens
   tokenCount.value = resultTokens.tokenCount
   charCount.value = resultTokens.charCount
+  wordCount.value = resultTokens.wordCount
   showTokens.value = true
 }
 
@@ -128,6 +134,10 @@ const onClean = () => {
 .token-count-container {
   margin-top: 15px;
   display: flex;
+}
+
+.token-count-spacer {
+  margin-left: 20px;
 }
 
 .token-container {
